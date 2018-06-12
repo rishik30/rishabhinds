@@ -29,7 +29,7 @@ export default class Loader extends Component {
 	}
 
     render () {
-        const activeClass = this.state.active ? 'active' : ''
+        const activeClass = this.state.active ? 'active' : ' '
         return (
             <div className={`loader ${activeClass}`}>
                 <div className="dots"><span></span><span></span><span></span><span></span><span></span></div>
