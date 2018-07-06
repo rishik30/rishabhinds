@@ -1,0 +1,63 @@
+main {
+  width: 100%;
+  height: 100%;
+  background: #667db6;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  position: relative;
+  z-index: 0;
+  opacity: 0.8;
+}
+
+#loginForm {
+  width: 320px;
+  height: auto;
+  padding: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  background: rgba(255, 255, 255, 0.45);
+  border-radius: 4px;
+
+  .inputContainer {
+    position: relative;
+    width: 100%;
+
+    input {
+      background: transparent;
+      height: 30px;
+      padding: 0px 5px;
+      margin: 10px 0px;
+      color: $color_light_black;
+      font-size: 16px;
+      font-weight: 600;
+      border: 0px;
+      border-bottom: 1px solid #ebebeb;
+      width: 100%;
+      box-sizing: border-box;
+      &:focus {
+        outline: none;
+      }
+    }
+
+    label {
+      position: absolute;
+      font-size: 16px;
+      font-weight: 400;
+      color: $color_red;
+      left: 5px;
+      pointer-events: none;
+      top: 18px;
+      transition: all .2s ease;
+      width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      &.active {
+        font-size: 13px;
+        top: 0px;
+      }
+    }
+  }
+}

@@ -15,9 +15,9 @@ const createStoreWithMiddleware = applyMiddleware(thunk)(createStore)
 ReactDOM.render(
     <Provider store={createStoreWithMiddleware(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())}>
         <BrowserRouter>
-            <div>
-                <Route path="/" component={Main} />
-            </div>
+            {/* <div> */}
+            <Route path="/" component={Main} />
+            {/* </div> */}
         </BrowserRouter>
     </Provider>
     , document.getElementById("movieflix-app")
