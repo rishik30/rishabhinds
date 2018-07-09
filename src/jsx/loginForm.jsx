@@ -1,6 +1,13 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
-export default class LoginForm extends Component {
+import { handleLoginUser } from '../redux/modules/action.js'
+
+const mapDispatchToProps = dispatch => ({
+    loginUser: data => dispatch(handleLoginUser(data))
+})
+
+class LoginForm extends Component {
 
     state = {
         email: '',
@@ -23,7 +30,7 @@ export default class LoginForm extends Component {
                     value={password}
                     onChange={text => this.setState({ password: text })}
                 />
-                <div className='button button-red button-transparent'>Login</div>
+                <div className='button button-red button-transparent' onClick={() => this.props.loginUser({email, password})}>Login</div>
             </form>
         )
     }
@@ -60,3 +67,5 @@ class InputElement extends Component {
         )
     }
 }
+
+export default connect(null, mapDispatchToProps)(LoginForm)

@@ -2,6 +2,7 @@ const express = require('express')
 const path = require('path')
 const bcrypt = require('bcryptjs')
 const { User } = require('../src/db/models/user.js')
+// const authenticate = require('../src/middleware/authenticate.js')
 
 module.exports = function (app) {
     const router = express.Router()
@@ -31,7 +32,7 @@ module.exports = function (app) {
     User.findOne({email: user.email})
         .then((doc) => {
             console.log('DOC', doc)
-            // if(!doc) return new Promise.reject('User not found!!')
+            if(!doc) return new Promise((resolve, reject) => reject('User not found!!'))
             // if(!doc) return res.send('User not found!!')
             return bcrypt.compare(user.password, doc.password)
         })
@@ -46,13 +47,17 @@ module.exports = function (app) {
         })
         .catch(e => {
             console.log('ERROR', e)
-            res.send(e)
+            res.status(401).send(e)
         })
-})
+    })
+
+    // router.get('/dashboard', authenticate, (req, res) => {
+    //     res.sendFile(path.resolve(__dirname, '../index.html'))
+    // })
 
     //all page requests
     router.get('/*', (req, res) => {
-        res.sendFile(path.resolve(__dirname, 'index.html'))
+        res.sendFile(path.resolve(__dirname, '../index.html'))
     })
 
     app.use('/', router)

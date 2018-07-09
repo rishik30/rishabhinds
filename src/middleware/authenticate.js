@@ -1,8 +1,8 @@
 var User = require('../db/models/user.js').User
 
 var authenticate = (req, res, next) => {
-    var token = req.header('x-auth')
-
+    var token = req.header('x-auth') || localStorage.accessToken
+    console.log('TOKEN', token)
     User.findByToken(token)
     .then((user) => {
         if(!user) {
