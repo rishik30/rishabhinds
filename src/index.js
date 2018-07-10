@@ -11,11 +11,15 @@ import thunk                                from 'redux-thunk'
 
 import reducers                             from './redux/rootReducer.js'
 import Main                                 from './jsx/main.jsx'
-import DashBoard                            from './jsx/dashboard.jsx'
+import DashBoard                            from './jsx/dashboard/index.jsx'
 
 import './style/index.scss'
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore)
+
+if (module.hot) {
+  module.hot.accept()
+}
 
 ReactDOM.render(
     <Provider store={createStoreWithMiddleware(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())}>

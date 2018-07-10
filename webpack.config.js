@@ -1,12 +1,18 @@
 var path = require('path');
+var webpack = require('webpack')
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const extractPlugin = new ExtractTextPlugin({
     filename: "style.css"
 })
 
+const hotModulePlugin = new webpack.HotModuleReplacementPlugin()
+
 module.exports = {
-    entry: './src/index.js',
+    entry: ['./src/index.js', 'webpack-hot-middleware/client', 'webpack/hot/dev-server'],
+    // devtool: 'source-map',
+    target: 'web',
+    mode: 'development',
     output: {
         path: path.resolve(__dirname, 'build'),
         filename: 'bundle.js',
@@ -52,13 +58,17 @@ module.exports = {
             }
         ]
     },
-    // node: {
-    //     fs: 'empty'
-    // },
+    node: {
+        fs: 'empty'
+    },
     plugins: [
-        extractPlugin
+        extractPlugin,
+        hotModulePlugin
     ],
+    // options for webpack-dev-server
     devServer: {
+        hot: true,
+        inline: true,
         historyApiFallback: true,        /* History API will fall back to index.html
                                         resolves Cannot GET /[page_name]*/
     }

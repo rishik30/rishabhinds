@@ -13,19 +13,6 @@ export default class Main extends Component {
     //     })
     // }
 
-    onClick = e => {
-        e.preventDefault()
-        axios({
-            url: 'http://localhost:8080/user/login',
-            method: 'POST',
-            data: {
-                email: 'rishabhk3003@gmail.com',
-                password: 'password'
-            }
-        })
-        .then(res => console.log('RESPONSE', res))
-    }
-
 	render () {
 		return (
 			<main>

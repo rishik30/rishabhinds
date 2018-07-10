@@ -18,7 +18,7 @@ export default handleActions({
         if (payload['Error']) return state.set('data', null)
         const watchedMoviesData = state.get('watchedMovies').toJS()
         payload.isWatched = watchedMoviesData.filter(item => item.Title === payload.Title).length > 0
-        payload.voteStatus = 0
+        payload.voteStatus = 2
         return state.set('data', payload)
     },
     [ADD_TO_WATCHED_LIST]: (state, { payload }) => {
